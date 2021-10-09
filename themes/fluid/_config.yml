@@ -428,7 +428,6 @@ index:
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
   banner_img: /img/default.jpg
 
-
   # 头图高度，屏幕百分比
   # Height ratio of banner image
   # Available: 0 - 100
