@@ -1,5 +1,5 @@
 ---
-title：第1章-JVM和Java体系架构
+title: 第1章-JVM和Java体系架构
 date: 2021/10/14 23:27:00
 categories:
 - JVM
