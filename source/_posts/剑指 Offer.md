@@ -67,7 +67,7 @@ class Solution {
 
 在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
 
-![](/img/LeetCode/image-20211122110207993.png)
+![](/img/剑指Offer/04-1)
 
 ### 题解
 
@@ -114,3 +114,100 @@ class Solution {
 }
 ```
 
+## 剑指 Offer 05. 替换空格
+
+请实现一个函数，把字符串 `s` 中的每个空格替换成"%20"。
+
+**示例1：**
+
+```
+输入：s = "We are happy."
+输出："We%20are%20happy."
+```
+
+### 题解
+
+1. 初始化一个 StringBuilder（res）
+2. 遍历字符串s中每个字符c
+   - 当c为空格时：向 res 后添加字符串 "%20" ；
+   - 当c不为空格时：向 res 后添加字符串 c ；
+3. 将列表 res 转化为字符串并返回。
+
+### 代码
+
+```java
+class Solution {
+    public String replaceSpace(String s) {
+        //初始化一个 StringBuilde
+        StringBuilder sb = new StringBuilder();
+        //遍历字符串s中每个字符c
+        for(int i = 0;i<s.length();i++){
+            if(s.charAt(i) == ' '){//当c为空格时：向 res 后添加字符串 "%20" ；
+                sb.append("%20");
+            }else{//当c不为空格时：向 res 后添加字符串 c ；
+                sb.append(s.charAt(i));
+            }
+        }  
+        //将列表 res 转化为字符串并返回。
+        return sb.toString();
+    }
+}
+```
+
+## 剑指 Offer 06. 从尾到头打印链表
+
+输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+
+**示例1：**
+
+```
+输入：head = [1,3,2]
+输出：[2,3,1]
+```
+
+### 题解
+
+栈的特点是后进先出，即最后压入栈的元素最先弹出。考虑到栈的这一特点，使用栈将链表元素顺序倒置。从链表的头节点开始，依次将每个节点压入栈内，然后依次弹出栈内的元素并存储到数组中。
+
+### 代码
+
+```java
+class Solution {
+    public int[] reversePrint(ListNode head) {
+        //创建一个栈
+        Stack<Integer> sta = new Stack<>();
+        ListNode temp =head;
+        //入栈
+        while(temp != null){
+            sta.add(temp.val);
+            temp = temp.next;
+        }
+        int[] res =new int[sta.size()];
+        int i =0;
+        //出栈
+        while(!sta.isEmpty()){
+            res[i++] = sta.pop();
+        }
+        return res;
+    }
+}
+```
+
+## 剑指 Offer 07. 重建二叉树
+
+输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。
+
+假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+
+**示例1：**
+
+![](/img/剑指Offer/07-1)
+
+```
+Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+Output: [3,9,20,null,null,15,7]
+```
+
+### 题解
+
+### 代码
