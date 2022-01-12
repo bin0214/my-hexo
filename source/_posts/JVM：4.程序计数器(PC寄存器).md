@@ -5,7 +5,7 @@ categories:
 - JVM学习笔记
 tags:
 - JVM
- 虚拟机
+- 虚拟机
 ---
 
 # 4、程序计数器（PC寄存器）

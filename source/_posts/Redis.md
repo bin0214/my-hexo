@@ -225,11 +225,11 @@ Redis客户端可以订阅任意数量的频道
 
 1. 客户端可以订阅频道如下图
 
-<img src="/img/Redis-05-01.png">
+<img src="/img/Redis/Redis-05-01.png">
 
 2. 当给这个频道发送消息后，消息就会发送给订阅的客户端
 
-<img src="/img/Redis-05-02.png">
+<img src="/img/Redis/Redis-05-02.png">
 
 ### 发布订阅命令行实现
 
@@ -237,17 +237,17 @@ Redis客户端可以订阅任意数量的频道
 
    SUBSCRIBE channel1
 
-<img src="/img/Redis-05-03.png">
+<img src="/img/Redis/Redis-05-03.png">
 
 2. 打开另一个客户端，给channel1发布消息hello
 
    publish channel1 hello
 
-<img src="/img/Redis-05-04.png">
+<img src="/img/Redis/Redis-05-04.png">
 
 3. 打开第一个客户端可以看到发送的消息
 
-<img src="/img/Redis-05-05.png">
+<img src="/img/Redis/Redis-05-05.png">
 
 注：发布的消息没有持久化，如果在订阅的客户端收不到hello，只能收到订阅后发布的消息
 
@@ -259,7 +259,7 @@ Redis客户端可以订阅任意数量的频道
 
 现代计算机用二进制(位)作为信息的基础单位，1个字节等于8位，比如“abc”字符串是由3个字节组成，但时实际在计算机存储时将其用二进制表示，“abc”分别对应ASCII码分别是97、 98、 99，对应的二进制分别是01100001、 01100010和01100011，如下图
 
-<img src="/img/Redis-06-01.png">
+<img src="/img/Redis/Redis-06-01.png">
 
 合理地使用操作位能够有效地提高内存使用率和开发效率。
 
@@ -270,7 +270,7 @@ Redis提供了Bitmaps这个“数据类型”可以实现对位的操作：
 
 > offset:偏移量从0开始
 
-<img src="/img/Redis-06-02.png">
+<img src="/img/Redis/Redis-06-02.png">
 
 #### 命令
 
@@ -550,19 +550,19 @@ Redis事务是一个单独的隔离操作：事务中的所有命令队列中，
 
 从输入Multi命令开始，输入的命令都会依次进入命令队列中，但不会执行，知道输入Exec后，Redis会将之前的命令队列中的命令依次执行
 
-<img src="/img/Redis-10-01.png">
+<img src="/img/Redis/Redis-10-01.png">
 
 #### 案例
 
-<img src="/img/Redis-10-07.png">
+<img src="/img/Redis/Redis-10-07.png">
 
 组队成功，提交成功
 
-<img src="/img/Redis-10-08.png">
+<img src="/img/Redis/Redis-10-08.png">
 
 组队阶段报错，提交失败
 
-<img src="/img/Redis-10-09.png">
+<img src="/img/Redis/Redis-10-09.png">
 
 组成成功，提交有成功有失败情况
 
@@ -570,11 +570,11 @@ Redis事务是一个单独的隔离操作：事务中的所有命令队列中，
 
 组队中某个命令出现了报告错误，执行时整个的所有队列都会被取消
 
-<img src="/img/Redis-10-02.png">
+<img src="/img/Redis/Redis-10-02.png">
 
 如果执行阶段某个命令报出了错误，则只有报错的命令不会被执行，而其他的命令都会执行，不会回滚。
 
-<img src="/img/Redis-10-03.png">
+<img src="/img/Redis/Redis-10-03.png">
 
 ### 事务冲突的问题
 
@@ -586,17 +586,17 @@ Redis事务是一个单独的隔离操作：事务中的所有命令队列中，
 
 一个请求想给金额减1000
 
-<img src="/img/Redis-10-04.png">
+<img src="/img/Redis/Redis-10-04.png">
 
 #### 悲观锁
 
-<img src="/img/Redis-10-05.png">
+<img src="/img/Redis/Redis-10-05.png">
 
 **悲观锁**，顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次拿数据的时候都会上锁，这样别人想拿这个数据就会block直到他拿到锁。**传统的关系型数据库里边就用到了很多这种锁机制**，比如**行锁**，**表锁**等，**读锁**，**写锁**等，都是在做操作之前线上锁
 
 #### 乐观锁
 
-<img src="/img/Redis-10-06.png">
+<img src="/img/Redis/Redis-10-06.png">
 
 乐观锁，顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所有不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以利用版本号机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量。Redis就是利用这种check-and-set机制实现事务的。
 
@@ -639,7 +639,7 @@ Redis会单独创建（fork）一个子进程来进行持久化，会先将数�
 
 #### RDB持久化流程
 
-<img src="/img/Redis-12-01.png">
+<img src="/img/Redis/Redis-12-01.png">
 
 #### 优势
 
@@ -648,7 +648,7 @@ Redis会单独创建（fork）一个子进程来进行持久化，会先将数�
 - 节省磁盘空间
 - 恢复速度快
 
-<img src="/img/Redis-12-02.png">
+<img src="/img/Redis/Redis-12-02.png">
 
 #### 劣势
 
@@ -658,7 +658,7 @@ Redis会单独创建（fork）一个子进程来进行持久化，会先将数�
 
 #### 小总结
 
-<img src="/img/Redis-12-03.png">
+<img src="/img/Redis/Redis-12-03.png">
 
 ### Redis持久化之AOF
 
@@ -671,7 +671,7 @@ Redis会单独创建（fork）一个子进程来进行持久化，会先将数�
 3. AOF文件大小超过重新策略或手动重写时，会对AOF文件rewrite重写，压缩AOF文件容量
 4. Redis服务重启时，会重新load加载AOF文件中的写操作达到数据恢复目的
 
-<img src="/img/Redis-13-01.png">
+<img src="/img/Redis/Redis-13-01.png">
 
 ### 
 
@@ -698,7 +698,7 @@ redis不主动进行同步，把**同步时机交给操作系统。**
 
 #### 优势
 
-<img src="/img/Redis-13-02.png">
+<img src="/img/Redis/Redis-13-02.png">
 
 - 备份机制更加稳健，丢失数据概率更低。
 - 可读的日志文本，通过操作AOF稳健，可以处理误处理。
@@ -712,7 +712,7 @@ redis不主动进行同步，把**同步时机交给操作系统。**
 
 #### 小总结
 
-<img src="/img/Redis-13-03.png">
+<img src="/img/Redis/Redis-13-03.png">
 
 ### 总结
 
@@ -746,7 +746,7 @@ redis不主动进行同步，把**同步时机交给操作系统。**
 - 读写分离，性能扩展
 - 容灾快速恢复
 
-<img src="/img/Redis-14-01.png">
+<img src="/img/Redis/Redis-14-01.png">
 
 ### 开启主从复制（略）
 
@@ -754,13 +754,13 @@ redis不主动进行同步，把**同步时机交给操作系统。**
 
 #### 一主二仆
 
-<img src="/img/Redis-14-02.png">
+<img src="/img/Redis/Redis-14-02.png">
 
 #### 薪火相传
 
 上一个Slave可以是下一个slave的Master，Slave同样可以接收其他 slaves的连接和同步请求，那么该slave作为了链条中下一个的master, 可以有效减轻master的写压力,去中心化降低风险。
 
-<img src="/img/Redis-14-03.png">
+<img src="/img/Redis/Redis-14-03.png">
 
 #### 反客为主
 
@@ -768,7 +768,7 @@ redis不主动进行同步，把**同步时机交给操作系统。**
 
 用slaveof no one 将从机变为主机
 
-<img src="/img/Redis-14-04.png">
+<img src="/img/Redis/Redis-14-04.png">
 
 ### 复制原理
 
@@ -778,7 +778,7 @@ redis不主动进行同步，把**同步时机交给操作系统。**
 - 增量复制：Master继续将新的所有收集到的修改命令依次传给slave完成同步。
 - 但是只有是重新连接master，一次完全同步（全量复制）将被自动执行。
 
-<img src="/img/Redis-14-07.png">
+<img src="/img/Redis/Redis-14-07.png">
 
 ### 哨兵模式
 
@@ -786,13 +786,13 @@ redis不主动进行同步，把**同步时机交给操作系统。**
 
 反客为主的自动版，能够后台监控主机是否故障，如果故障了根据投票数自动将从库转换为主库
 
-<img src="/img/Redis-14-06.png">
+<img src="/img/Redis/Redis-14-06.png">
 
 #### 开启哨兵模式（略）
 
 ### 故障恢复
 
-<img src="/img/Redis-14-07.png">
+<img src="/img/Redis/Redis-14-07.png">
 
 优先级在redis.conf中默认：slave-priority 100，值越小优先级越高
 
@@ -834,17 +834,17 @@ redis-cli客户端提供了 –c 参数实现自动重定向。
 
 不在一个slot下的键值，是不能使用mget,mset等多键操作。
 
-<img src="/img/Redis-15-02.png">
+<img src="/img/Redis/Redis-15-02.png">
 
 可以通过{}来定义组的概念，从而使key中{}内相同内容的键值对放到一个slot中去。
 
-<img src="/img/Redis-15-03.png">
+<img src="/img/Redis/Redis-15-03.png">
 
 ### 查询集群中的值
 
 CLUSTER GETKEYSINSLOT &lt;slot&gt;&lt;count&gt; 返回 count 个 slot 槽中的键。
 
-<img src="/img/Redis-15-01.png">
+<img src="/img/Redis/Redis-15-01.png">
 
 ### 故障恢复
 
@@ -880,7 +880,7 @@ redis.conf中的参数  cluster-require-full-coverage
 
 key对应的数据源并不存在，每次针对次key的请求从缓存获取不到，请求都会压到数据源，从而可能压垮数据源，比如用一个不存在的用户id获取用户信息，不论缓存还是数据库都没有，若黑客利用此漏洞进行攻击可能压垮数据库。
 
-<img src="/img/Redis-16-02.png">
+<img src="/img/Redis/Redis-16-02.png">
 
 #### 解决方案
 
@@ -908,7 +908,7 @@ key对应的数据源并不存在，每次针对次key的请求从缓存获取�
 
 key对应数据存在，但是redis中过期，此时若有大量并发请求过来，这些请求发现缓存过期一般都会从后端DB加载数据并回设到缓存，这时候大并发的请求可能会瞬间把后端BD压垮。
 
-![image-20220110164537596](/img/Redis-16-03.png)
+![image-20220110164537596](/img/Redis/Redis-16-03.png)
 
 #### 解决方案
 
@@ -930,7 +930,7 @@ key可能会在某些时间点被超高并发地访问，是一种非常“热�
 
 （4） 当操作返回失败，证明有线程在load db，当前线程睡眠一段时间再重试整个get缓存的方法。
 
-<img src="/img/Redis-16-04.png">
+<img src="/img/Redis/Redis-16-04.png">
 
 ### 缓存雪崩
 
@@ -942,11 +942,11 @@ key对应的数据存在，但是redis中过期，此时若有大量并发请求
 
 正常访问
 
-<img src="/img/Redis-16-05.png">
+<img src="/img/Redis/Redis-16-05.png">
 
 缓存失效瞬间
 
-<img src="/img/Redis-16-06.png">
+<img src="/img/Redis/Redis-16-06.png">
 
 #### 解决方案
 
@@ -1004,9 +1004,9 @@ NX ：只在键不存在时，才对键进行设置操作。 SET key value NX �
 
 XX ：只在键已经存在时，才对键进行设置操作。
 
-<img src="/img/Redis-16-07.png">
+<img src="/img/Redis/Redis-16-07.png">
 
-<img src="/img/Redis-16-08.png">
+<img src="/img/Redis/Redis-16-08.png">
 
 1. 多个客户端同时获取锁（setnx）
 
