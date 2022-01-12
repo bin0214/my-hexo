@@ -14,11 +14,11 @@ tags:
 
 ### 简图
 
-<img src="../../themes/fluid/source/img/JVM/02-001.png">
+<img src="/img/JVM/02-001.png">
 
 ### 详细图
 
-<img src="../../themes/fluid/source/img/JVM/02-002.png">
+<img src="/img/JVM/02-002.png">
 
 注意：方法区只有Hotspot虚拟机有，J9,JRockit都没有
 
@@ -37,7 +37,7 @@ tags:
 2. CLassLoader只负责class文件的加载，至于它是否可以运行，则有Execution Engine（执行引擎）决定
 3. **加载的类信息存放一块称为方法区的内存空间。**除了类的信息外，方法区中还会存放运行时常量池信息，可能还包括字符串、字面量和数字常量（这部分常量信息是Class文件中常量池部分的内存映射）
 
-<img src="../../themes/fluid/source/img/JVM/02-003.png">
+<img src="/img/JVM/02-003.png">
 
 类加载器ClassLoader角色
 
@@ -45,7 +45,7 @@ tags:
 2. class file加载到JVM中，被称为DNA元数据模板（在下图中就是内存中的Car Class），放在方法区。
 3. 在.class文件–>JVM–>最终成为元数据模板，此过程就要一个运输工具（类装载器ClassLoader），扮演一个快递员的角色。
 
-<img src="../../themes/fluid/source/img/JVM/02-004.png">
+<img src="/img/JVM/02-004.png">
 
 ## 类加载过程
 
@@ -66,11 +66,11 @@ public class HelloLoader {
 - 加载成功，则进行链接、初始化等操作。完成后调用HelloLoader类中的静态方法main
 - 加载失败则抛出异常
 
-<img src="../../themes/fluid/source/img/JVM/02-005.png">
+<img src="/img/JVM/02-005.png">
 
 完整的流程图如下所示：
 
-<img src="../../themes/fluid/source/img/JVM/02-006.png">
+<img src="/img/JVM/02-006.png">
 
 ### 加载阶段
 
@@ -108,7 +108,7 @@ public class HelloLoader {
 
 使用 BinaryViewer软件查看字节码文件，其开头均为 CAFE BABE ，如果出现不合法的字节码文件，那么将会验证不通过。
 
-<img src="../../themes/fluid/source/img/JVM/02-007.png">
+<img src="/img/JVM/02-007.png">
 
 #### 准备（Prepare）
 
@@ -143,7 +143,7 @@ public class HelloApp {
 
 - 反编译 class 文件后可以查看符号引用，下面带# 的就是符号引用
 
-<img src="../../themes/fluid/source/img/JVM/02-008.png"/>
+<img src="/img/JVM/02-008.png"/>
 
 ### 初始化阶段
 
@@ -174,7 +174,7 @@ public class HelloApp {
 
 查看下面这个代码的字节码，可以发现有一个`<clinit>()`方法。
 
-<img src="../../themes/fluid/source/img/JVM/02-009.png">
+<img src="/img/JVM/02-009.png">
 
 ```java
 public class ClassInitTest {
@@ -223,15 +223,15 @@ public class ClassInitTest {
 
 **举例2：无 static 变量**
 
-<img src="../../themes/fluid/source/img/JVM/02-010.png">
+<img src="/img/JVM/02-010.png">
 
 加上之后就有了
 
-<img src="../../themes/fluid/source/img/JVM/02-011.png">
+<img src="/img/JVM/02-011.png">
 
 #### 4.说明
 
-<img src="../../themes/fluid/source/img/JVM/02-012.png">
+<img src="/img/JVM/02-012.png">
 
 在构造器中：
 
@@ -242,7 +242,7 @@ public class ClassInitTest {
 
 若该类具有父类，JVM会保证子类的`<clinit>()`执行前，父类的`<clinit>()`已经执行完毕
 
-<img src="../../themes/fluid/source/img/JVM/02-013.png">
+<img src="/img/JVM/02-013.png">
 
 如上代码，加载流程如下：
 
@@ -307,15 +307,15 @@ class DeadThread{
 2. 从概念上来讲，自定义类加载器一般指的是程序中由开发人员自定义的一类类加载器，但是Java虚拟机规范却没有这么定义，而是将所有派生于抽象类ClassLoader的类加载器都划分为自定义类加载器
 3. 无论类加载器的类型如何划分，在程序中我们最常见的类加载器始终只有3个，如下所示
 
-<img src="../../themes/fluid/source/img/JVM/02-014.png">
+<img src="/img/JVM/02-014.png">
 
 **ExtClassLoader**
 
-<img src="../../themes/fluid/source/img/JVM/02-015.png">
+<img src="/img/JVM/02-015.png">
 
 **AppClassLoader**
 
-<img src="../../themes/fluid/source/img/JVM/02-016.png">
+<img src="/img/JVM/02-016.png">
 
 ```java
 public class ClassLoaderTest {
@@ -491,15 +491,15 @@ public class CustomClassLoader extends ClassLoader {
 
 ClassLoader类，它是一个抽象类，其后所有的类加载器都继承自ClassLoader（不包括启动类加载器）
 
-<img src="../../themes/fluid/source/img/JVM/02-017.png">
+<img src="/img/JVM/02-017.png">
 
 sun.misc.Launcher 它是一个java虚拟机的入口应用
 
-<img src="../../themes/fluid/source/img/JVM/02-018.png">
+<img src="/img/JVM/02-018.png">
 
 #### 获取ClassLoader途径
 
-<img src="../../themes/fluid/source/img/JVM/02-019.png">
+<img src="/img/JVM/02-019.png">
 
 ```java
 public class ClassLoaderTest2 {
@@ -544,7 +544,7 @@ Java虚拟机对class文件采用的是**按需加载**的方式，也就是说�
 3. 如果父类加载器可以完成类加载任务，就成功返回，倘若父类加载器无法完成此加载任务，子加载器才会尝试自己去加载，这就是双亲委派机制。
 4. 父类加载器一层一层往下分配任务，如果子类加载器能加载，则加载此类，如果将加载任务分配至系统类加载器也无法加载此类，则抛出异常。
 
-<img src="../../themes/fluid/source/img/JVM/02-020.png">
+<img src="/img/JVM/02-020.png">
 
 #### 举例一
 
@@ -599,7 +599,7 @@ public class String {
 }
 ```
 
-<img src="../../themes/fluid/source/img/JVM/02-021.png">
+<img src="/img/JVM/02-021.png">
 
 由于双亲委派机制一直找父类，所以最后找到了Bootstrap ClassLoader，Bootstrap ClassLoader找到的是 JDK 自带的 String 类，在那个String类中并没有 main() 方法，所以就报了上面的错误。
 
@@ -650,7 +650,7 @@ Process finished with exit code 1
 4. 第三方的jar包中的类属于系统类加载器来加载
 5. 从这里面就可以看到SPI核心接口由引导类加载器来加载，SPI具体实现类由系统类加载器来加载
 
-<img src="../../themes/fluid/source/img/JVM/02-022.png">
+<img src="/img/JVM/02-022.png">
 
 ### 双亲委派机制优势
 
